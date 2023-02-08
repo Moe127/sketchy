@@ -1,0 +1,49 @@
+/* general styles */
+body {
+  background-color: #607d8b;
+}
+button,
+input {
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+/* sketch-toolbar */
+.sketch-toolbar {
+  background-color: #212121;
+}
+/* sketch-pad */
+
+.sketch-pad {
+  width: 482px;
+  height: 482px;
+  background-color: #fff;
+}
+
+input.color {
+  appearance: none;
+  -webkit-appearance: none;
+  background-color: transparent;
+  width: 100%;
+  padding: 0;
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  cursor: pointer;
+  border: none;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+}
+
+input[type="color"]:hover {
+  transform: scale(1.05);
+}
+
+.active {
+  background-color: yellow;
+}
