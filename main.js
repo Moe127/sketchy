@@ -36,6 +36,14 @@ function paint() {
     });
   });
 }
+function paintScreen() {
+  const sketchBoxes = document.querySelectorAll(".sketch-box");
+  sketchBoxes.forEach((box) => {
+    box.addEventListener("touchmove", () => {
+      box.style.backgroundColor = `${color}`;
+    });
+  });
+}
 function randomColorBrush() {
   const sketchBoxes = document.querySelectorAll(".sketch-box");
   sketchBoxes.forEach((box) => {
@@ -98,6 +106,8 @@ showGrid.addEventListener("click", () => {
 });
 // initial grid
 generateNewGrid(pixels);
-paint(color);
+paint();
 rangeText.innerText = `${pixels} x ${pixels}`;
 sketchBrush.style.color = color;
+
+paintScreen();
