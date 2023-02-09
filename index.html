@@ -23,27 +23,34 @@
   </head>
   <body>
     <div class="container p-4 text-center h-100 justify-content-center">
-      <h1>Sketchy</h1>
+      <h1 class="heading">Sketchy</h1>
       <div class="row justify-content-around mt-5">
         <!-- toolbar -->
-        <div class="col-md-2">
+        <div class="col-md-3">
           <div
             class="sketch-toolbar d-flex flex-column shadow text-white m-auto p-4 rounded"
           >
-            <button class="btn btn-outline-warning clear">Clear</button>
-            <button class="btn btn-outline-warning eraser">Eraser</button>
-            <button class="btn btn-outline-warning brush">Brush</button>
-            <input type="color" class="color" />
-            <button class="btn btn-outline-warning random-color">
-              Random color
+            <input type="color" class="color" value="#B2DFDB" />
+            <button class="btn brush">
+              <i class="fa-solid fa-paintbrush"></i> Brush
             </button>
+            <button class="btn eraser">
+              <i class="fa-solid fa-eraser"></i> Eraser
+            </button>
+            <button class="btn random-color">Random color</button>
+            <button class="btn grid">
+              <i class="fa-solid fa-border-all"></i> Show Grid
+            </button>
+
+            <button class="btn clear">Clear</button>
+            <span class="range-text"></span>
             <input
-              type="number"
+              type="range"
               name="pixels"
               max="64"
               min="1"
-              class="pixels px-2"
-              value="4"
+              class="pixels px-2 m-auto"
+              value="16"
               placeholder="Enter pixels number"
             />
           </div>
@@ -56,9 +63,14 @@
         </div>
       </div>
 
-      <p class="mt-4">
+      <p class="mt-4 copy">
         Copyright © 2023 Mohamed Saada
-        <a href="#" target="_blank"><i class="fab fa-github"></i></a>
+        <a
+          href="https://github.com/Moe127/sketchy"
+          class="github"
+          target="_blank"
+          ><i class="fab fa-github"></i
+        ></a>
       </p>
     </div>
     <script src="main.js"></script>

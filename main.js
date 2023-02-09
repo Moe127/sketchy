@@ -7,12 +7,15 @@ const sketchEraser = document.querySelector(".eraser");
 const sketchBrush = document.querySelector(".brush");
 const sketchColor = document.querySelector(".color");
 const randomColor = document.querySelector(".random-color");
+const showGrid = document.querySelector(".grid");
 
+let rangeText = document.querySelector(".range-text");
 let red;
 let green;
 let blue;
 let color = sketchColor.value;
 let pixels = sketchPixels.value;
+let showGridState = false;
 
 function generateNewGrid(pixels) {
   sketchPad.innerHTML = "";
@@ -63,6 +66,8 @@ function clear() {
 
 sketchColor.addEventListener("change", () => {
   color = sketchColor.value;
+  sketchBrush.style.color = color;
+
   paint(color);
 });
 sketchPixels.addEventListener("change", () => {
@@ -70,12 +75,29 @@ sketchPixels.addEventListener("change", () => {
   generateNewGrid(pixels);
   paint();
 });
+sketchPixels.addEventListener("input", () => {
+  pixels = sketchPixels.value;
+  rangeText.innerText = `${pixels} x ${pixels}`;
+});
 sketchClear.addEventListener("click", clear);
-
 randomColor.addEventListener("click", randomColorBrush);
 sketchEraser.addEventListener("click", eraser);
 sketchBrush.addEventListener("click", paint);
-
+showGrid.addEventListener("click", () => {
+  if (!showGridState) {
+    showGrid.innerText = "Hide Grid";
+    showGridState = true;
+  } else {
+    showGrid.innerText = "Show Grid";
+    showGridState = false;
+  }
+  const sketchBoxes = document.querySelectorAll(".sketch-box");
+  sketchBoxes.forEach((box) => {
+    box.classList.toggle("sketch-border");
+  });
+});
 // initial grid
 generateNewGrid(pixels);
 paint(color);
+rangeText.innerText = `${pixels} x ${pixels}`;
+sketchBrush.style.color = color;
