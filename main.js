@@ -15,9 +15,9 @@ let green;
 let blue;
 let color = sketchColor.value;
 let pixels = sketchPixels.value;
-let showGridState = false;
 
 function generateNewGrid(pixels) {
+  console.log("s");
   sketchPad.innerHTML = "";
   for (let i = 0; i < pixels * pixels; i++) {
     const sketchBox = document.createElement("div");
@@ -28,6 +28,13 @@ function generateNewGrid(pixels) {
   }
 }
 
+function displayGrid() {
+  const sketchBoxes = document.querySelectorAll(".sketch-box");
+  sketchBoxes.forEach((box) => {
+    box.classList.toggle("sketch-border");
+  });
+}
+
 function paint() {
   const sketchBoxes = document.querySelectorAll(".sketch-box");
   sketchBoxes.forEach((box) => {
@@ -36,14 +43,7 @@ function paint() {
     });
   });
 }
-function paintScreen() {
-  const sketchBoxes = document.querySelectorAll(".sketch-box");
-  sketchBoxes.forEach((box) => {
-    box.addEventListener("touchmove", () => {
-      box.style.backgroundColor = `${color}`;
-    });
-  });
-}
+
 function randomColorBrush() {
   const sketchBoxes = document.querySelectorAll(".sketch-box");
   sketchBoxes.forEach((box) => {
@@ -75,7 +75,6 @@ function clear() {
 sketchColor.addEventListener("change", () => {
   color = sketchColor.value;
   sketchBrush.style.color = color;
-
   paint(color);
 });
 sketchPixels.addEventListener("change", () => {
@@ -92,22 +91,10 @@ randomColor.addEventListener("click", randomColorBrush);
 sketchEraser.addEventListener("click", eraser);
 sketchBrush.addEventListener("click", paint);
 showGrid.addEventListener("click", () => {
-  if (!showGridState) {
-    showGrid.innerText = "Hide Grid";
-    showGridState = true;
-  } else {
-    showGrid.innerText = "Show Grid";
-    showGridState = false;
-  }
-  const sketchBoxes = document.querySelectorAll(".sketch-box");
-  sketchBoxes.forEach((box) => {
-    box.classList.toggle("sketch-border");
-  });
+  displayGrid();
 });
-// initial grid
+
 generateNewGrid(pixels);
 paint();
 rangeText.innerText = `${pixels} x ${pixels}`;
 sketchBrush.style.color = color;
-
-paintScreen();
